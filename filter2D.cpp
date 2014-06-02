@@ -52,8 +52,13 @@ int main ( int argc, char** argv )
 
       /// Update kernel size for a normalized box filter
       kernel_size = 3 + 2*( ind%5 );
-      kernel = Mat::ones( kernel_size, kernel_size, CV_32F )/ (float)(kernel_size*kernel_size);
-
+      kernel = Mat::ones( kernel_size, kernel_size, CV_32F )/ (float)(kernel_size*kernel_size); //blur the pic by the kernel function which reduce the px to 1/9 in this example---  by morgan
+	  
+	  /*
+	  kernel = (Mat_<char>(3,3) <<  0, -2,  0,
+                               -1,  5, 1,
+                                0, -1,  0); //construct the matrix to enhance the contrast of pic --by morgan
+		*/
       /// Apply filter
       filter2D(src, dst, ddepth , kernel, anchor, delta, BORDER_DEFAULT );
       imshow( window_name, dst );
